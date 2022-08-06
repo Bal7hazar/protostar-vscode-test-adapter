@@ -1,9 +1,8 @@
 name: CI
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
+  push:
     branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -38,19 +37,13 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Check unit tests and code coverage
-        run: yarn test
-
       - name: Jest GitHub Action
         uses: willcaul/jest-github-action@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           # this is just an example, this could be any command that will trigger jest
-          test-command: "yarn test"
-
-      - name: Check unit tests and code coverage
-        run: yarn coverage
+          test-command: "yarn coverage"
 
   linting:
     name: Code formatting 
