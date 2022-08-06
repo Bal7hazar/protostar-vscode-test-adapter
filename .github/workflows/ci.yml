@@ -30,14 +30,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Jest GitHub Action
-        uses: willcaul/jest-github-action@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          # this is just an example, this could be any command that will trigger jest
-          test-command: "yarn coverage"
-
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.2.0
         with:
@@ -45,6 +37,17 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
+
+      - name: Check unit tests and code coverage
+        run: yarn test
+
+      - name: Jest GitHub Action
+        uses: willcaul/jest-github-action@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # this is just an example, this could be any command that will trigger jest
+          test-command: "yarn test"
 
       - name: Check unit tests and code coverage
         run: yarn coverage
