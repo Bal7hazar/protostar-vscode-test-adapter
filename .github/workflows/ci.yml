@@ -30,6 +30,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: willcaul/jest-github-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # this is just an example, this could be any command that will trigger jest
+          test-command: "yarn coverage"
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.2.0
         with:
