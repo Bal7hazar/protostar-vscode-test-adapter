@@ -45,9 +45,6 @@ jobs:
           # this is just an example, this could be any command that will trigger jest
           test-command: "yarn coverage"
 
-      - name: Check unit tests and code coverage
-        run: yarn coverage
-
   linting:
     name: Code formatting 
     runs-on: ubuntu-latest
